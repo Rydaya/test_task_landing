@@ -8,8 +8,9 @@ export const LeadForm = () => {
     ReactPixel.track("Lead");
 
     const clickId = new URLSearchParams(window.location.search).get("click_id");
+    const timestamp = Date.now();
 
-    fetch("https://KEITARO_API_URL", {
+    fetch("https://httpbin.org/post", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -17,6 +18,7 @@ export const LeadForm = () => {
       body: JSON.stringify({
         click_id: clickId,
         event: "cta_click",
+        timestamp,
       }),
     })
       .then((res) => res.json())
